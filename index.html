@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="BigBox"></div>
+    </div>
+    <div class="input-form">
+        <div class="form">
+          </form>
+          <form class="login-form">
+            <input id="name" type="text" placeholder="Name"/>
+            <input id="price" type="text" placeholder="Price"/>
+            <input id="image" type="text" placeholder="Image"/>
+            <button id="btnclick">login</button>
+          </form>
+        </div>
+        
+      </div>
+</body>
+<script>
+
+
+    const btnclick = document.getElementById("btnclick")
+    btnclick.addEventListener("click", (e)=>{
+        e.preventDefault()
+        const name = document.getElementById("name").value
+        console.log(name);
+        const price = document.getElementById("price").value
+        console.log(price);
+        const image = document.getElementById("image").value
+        console.log(image);
+        info = null
+
+        var userinfo = [{
+            name:name,
+            price:price,
+            image:image,
+        }]
+        if (info == null) {
+            info = [userinfo]
+            localStorage.setItem("info", JSON.stringify(userinfo))
+            info = JSON.parse(localStorage.getItem("info"))
+            var main = document.getElementById("BigBox")
+    for(let item of info){
+    var item_div = document.createElement("div")
+    item_div.classList.add("card")
+    item_div.innerHTML = `<div class="example-wrapper">
+    <div class="gift-card">
+      <div class="gift-card__image" style="background-image: url(${item.image})"></div>
+      <div class="gift-card__details">
+        <div class="gift-card__info">
+          <label class="gift-card__label">
+            Price:
+          </label>
+          <div class="gift-card__value" style: color="black";>
+            ${item.price}
+          </div>
+        </div>
+        <div class="gift-card__info">
+          <label class="gift-card__label">
+            Item name:
+          </label>
+          <div class="gift-card__code" style: color="black";>
+             ${item.name}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`
+  main.appendChild(item_div)
+}
+        }else{
+        localStorage.setItem("info", JSON.stringify(userinfo))
+        info = JSON.parse(localStorage.getItem("info"))
+        var main = document.getElementById("BigBox")
+    for(let item of info){
+    var item_div = document.createElement("div")
+    item_div.classList.add("card")
+    item_div.innerHTML = `<div class="example-wrapper">
+    <div class="gift-card">
+      <div class="gift-card__image" style="background-image: url(${item.image})"></div>
+      <div class="gift-card__details">
+        <div class="gift-card__info">
+          <label class="gift-card__label">
+            Value
+          </label>
+          <div class="gift-card__value">
+            ${item.price}
+          </div>
+        </div>
+        <div class="gift-card__info">
+          <label class="gift-card__label">
+            Item Name:
+          </label>
+          <div class="gift-card__code">
+             ${item.price}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`
+  main.appendChild(item_div)
+}}})
+
+</script>    
+</html>
